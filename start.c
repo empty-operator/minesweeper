@@ -2,10 +2,12 @@
 #include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "header.h"
 
 extern int height, width;
 extern int numberOfMines;
+extern int cellsLeft;
 extern state gameState;
 extern cell **field;
 
@@ -19,24 +21,25 @@ void startGame(void) {
         case ESCAPE:
             exit(0);
         case ONE:
-            field = malloc(9 * sizeof(cell *));
-            for (int i = 0; i < 9; i++) *(field + i) = malloc(9 * sizeof(cell));
             height = 9, width = 9, numberOfMines = 10;
+            field = (cell **) malloc(height * sizeof(cell *));
+            for (int i = 0; i < height; i++) *(field + i) = (cell *) malloc(width * sizeof(cell));
             break;
         case TWO:
-            field = malloc(16 * sizeof(cell *));
-            for (int i = 0; i < 16; i++) *(field + i) = malloc(9 * sizeof(cell));
             height = 16, width = 16, numberOfMines = 40;
+            field = (cell **) malloc(height * sizeof(cell *));
+            for (int i = 0; i < height; i++) *(field + i) = (cell *) malloc(width * sizeof(cell));
             break;
         case THREE:
-            field = malloc(16 * sizeof(cell *));
-            for (int i = 0; i < 30; i++) *(field + i) = malloc(9 * sizeof(cell));
             height = 16, width = 30, numberOfMines = 99;
+            field = (cell **) malloc(height * sizeof(cell *));
+            for (int i = 0; i < height; i++) *(field + i) = (cell *) malloc(width * sizeof(cell));
             break;
         default:
             break;
     }
     if (field == NULL) exit(0);
+    cellsLeft = height * width;
     initField();
     printField(gameState);
-};
+}

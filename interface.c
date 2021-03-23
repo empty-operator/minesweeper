@@ -12,13 +12,15 @@ extern cell **field;
 
 void printField(state gameState) {
     system("cls");
-    puts(" ╔══════════╗");
+    printf(" ╔");
+    for (int i = 0; i < width; ++i) printf("═");
+    printf("╗\n");
     for (int i = 0; i < height; ++i) {
         printf(" ║");
         for (int j = 0; j < width; ++j) {
             if (i == cursor.y && j == cursor.x) {
                 if (!field[i][j].isMine && field[i][j].isOpen) {
-                    if (field[i][j].minesCounter) printf(BLACK "%d" RESET, field[i][j].minesCounter);
+                    if (field[i][j].minesCounter) printf(WHITE_BLACK "%d" RESET, field[i][j].minesCounter);
                     else printf(BG_WHITE "%c" RESET, OPEN);
                 } else {
                     switch (gameState) {
@@ -53,8 +55,11 @@ void printField(state gameState) {
                         case 4:
                             printf(BG_GRAY PURPLE "%d" RESET, field[i][j].minesCounter);
                             break;
+                        case 5:
+                            printf(BG_GRAY CYAN "%d" RESET, field[i][j].minesCounter);
+                            break;
                         default:
-                            printf(BG_GRAY "%d", field[i][j].minesCounter);
+                            printf(GRAY_BLACK "%d" RESET, field[i][j].minesCounter);
                     }
                 } else {
                     switch (gameState) {
@@ -77,7 +82,9 @@ void printField(state gameState) {
         }
         puts("║");
     }
-    puts(" ╚══════════╝");
+    printf(" ╚");
+    for (int i = 0; i < width; ++i) printf("═");
+    printf("╝\n");
     printf("%d", cellsLeft);
 }
 

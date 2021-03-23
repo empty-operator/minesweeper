@@ -3,15 +3,14 @@
 #include <stdbool.h>
 #include "header.h"
 
-state gameState = DEFAULT;
 int height = 0, width = 0;
 int numberOfMines = 0;
-int cellsLeft = HEIGHT * WIDTH;
+int cellsLeft = 0;
+state gameState = DEFAULT;
 point cursor = {0, 0};
 cell **field = NULL;
 
 int main() {
-    system("chcp 65001");
     startGame();
     while (gameState == DEFAULT)
         switch (readKey()) {
@@ -19,7 +18,7 @@ int main() {
                 if (field[cursor.y][cursor.x].flag) break;
                 if (field[cursor.y][cursor.x].isMine) gameState = DEFEAT;
                 else openEmpty(cursor.y, cursor.x);
-                if (cellsLeft == 10) gameState = WIN;
+                if (cellsLeft == numberOfMines) gameState = WIN;
                 printField(gameState);
                 break;
             case SET_FLAG:
@@ -28,7 +27,10 @@ int main() {
                 printField(gameState);
                 break;
         }
-    if (gameState == WIN) printf("Ви виграли!");
+    if (gameState == WIN) printf("Ви виграли!\n");
+    else printf("Шкода, але ви програли. Успіхів наступного разу!\n");
+    for (int i = 0; i < height; i++) free(*(field + i));
+    free(field);
     getchar(); getchar();
     return 0;
 }

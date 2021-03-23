@@ -1,16 +1,16 @@
 #ifndef MINESWEEPER_HEADER_H
 #define MINESWEEPER_HEADER_H
 
-#define WIDTH 15
-#define HEIGHT 10
 #define BG_WHITE "\x1b[97;107m"
 #define BG_GRAY "\x1b[37;47m"
 #define BG_RED "\x1b[97;41m"
-#define BLACK "\x1b[97;7m"
-#define BLUE "\x1b[34m"
-#define GREEN "\x1b[32m"
-#define PURPLE "\x1b[35m"
+#define WHITE_BLACK "\x1b[97;7m"
+#define GRAY_BLACK "\x1b[37;7m"
 #define RED "\x1b[31m"
+#define GREEN "\x1b[32m"
+#define BLUE "\x1b[34m"
+#define PURPLE "\x1b[35m"
+#define CYAN "\x1b[36m"
 #define RESET "\x1b[0m"
 #define EMPTY ' '
 #define OPEN ' '

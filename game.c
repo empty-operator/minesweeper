@@ -27,13 +27,13 @@ void initField(void) {
         for (int j = 0; j < width; ++j)
             for (int x = -1; x < 2; ++x)
                 for (int y = -1; y < 2; ++y)
-                    if (i + x >= 0 && i + x < HEIGHT && j + y >= 0 && j + y < width)
+                    if (i + x >= 0 && i + x < height && j + y >= 0 && j + y < width)
                         if (field[i + x][j + y].isMine)
                             field[i][j].minesCounter++;
 }
 
 void openEmpty(int i, int j) {
-    if (field[i][j].isOpen || i < 0 || i >= height || j < 0 || j >= width) return;
+    if (i < 0 || i >= height || j < 0 || j >= width || field[i][j].isOpen) return;
     field[i][j].isOpen = true;
     cellsLeft--;
     if (!field[i][j].minesCounter)
