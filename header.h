@@ -1,6 +1,8 @@
 #ifndef MINESWEEPER_HEADER_H
 #define MINESWEEPER_HEADER_H
 
+#define WIDTH 15
+#define HEIGHT 10
 #define BG_WHITE "\x1b[97;107m"
 #define BG_GRAY "\x1b[37;47m"
 #define BG_RED "\x1b[97;41m"
@@ -14,6 +16,9 @@
 #define OPEN ' '
 #define FLAG 'F'
 #define MINE '*'
+#define ONE 0x31
+#define TWO 0x32
+#define THREE 0x33
 #define ESCAPE 0x1B
 #define SLASH 0x5C
 #define ENTER 0xD
@@ -45,8 +50,9 @@ typedef struct {
     int minesCounter;
 } cell;
 
+void startGame(void);
+void initField(void);
 void printField(state);
-void initField(int);
 action readKey(void);
 void openEmpty(int, int);
 

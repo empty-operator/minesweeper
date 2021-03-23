@@ -3,16 +3,17 @@
 #include <stdbool.h>
 #include "header.h"
 
-int cellsLeft = 100;
+state gameState = DEFAULT;
+int height = 0, width = 0;
+int numberOfMines = 0;
+int cellsLeft = HEIGHT * WIDTH;
 point cursor = {0, 0};
-cell field[10][10];
+cell **field = NULL;
 
 int main() {
     system("chcp 65001");
-    state gameState = DEFAULT;
-    initField(10);
-    printField(gameState);
-    do {
+    startGame();
+    while (gameState == DEFAULT)
         switch (readKey()) {
             case OPEN_CELL:
                 if (field[cursor.y][cursor.x].flag) break;
@@ -27,8 +28,7 @@ int main() {
                 printField(gameState);
                 break;
         }
-    } while (gameState == DEFAULT);
-    if (gameState == WIN) printf("You won!");
+    if (gameState == WIN) printf("Ви виграли!");
     getchar(); getchar();
     return 0;
 }
