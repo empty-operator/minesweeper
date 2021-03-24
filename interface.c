@@ -85,7 +85,6 @@ void printField(state gameState) {
     printf(" ╚");
     for (int i = 0; i < width; ++i) printf("═");
     printf("╝\n");
-    printf("%d", cellsLeft);
 }
 
 int readKey(void) {
