@@ -12,20 +12,26 @@
 #define PURPLE "\x1b[35m"
 #define CYAN "\x1b[36m"
 #define RESET "\x1b[0m"
-#define EMPTY ' '
-#define OPEN ' '
-#define FLAG 'F'
-#define MINE '*'
-#define ONE 0x31
-#define TWO 0x32
-#define THREE 0x33
-#define ESCAPE 0x1B
-#define SLASH 0x5C
-#define ENTER 0xD
-#define RIGHT 0x4D
-#define DOWN 0x50
-#define LEFT 0x4B
-#define UP 0x48
+
+typedef enum {
+    EMPTY = ' ',
+    OPEN = ' ',
+    FLAG = 'F',
+    MINE = '*'
+} type;
+
+typedef enum {
+    ONE = 0x31,
+    TWO = 0x32,
+    THREE = 0x33,
+    ESCAPE = 0x1B,
+    SLASH = 0x5C,
+    ENTER = 0xD,
+    RIGHT = 0x4D,
+    DOWN = 0x50,
+    LEFT = 0x4B,
+    UP = 0x48
+} key;
 
 typedef enum {
     DEFAULT,

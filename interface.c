@@ -17,12 +17,12 @@ void printField(state gameState) {
     printf("╗\n");
     for (int i = 0; i < height; ++i) {
         printf(" ║");
-        for (int j = 0; j < width; ++j) {
-            if (i == cursor.y && j == cursor.x) {
-                if (!field[i][j].isMine && field[i][j].isOpen) {
+        for (int j = 0; j < width; ++j)
+            if (i == cursor.y && j == cursor.x)
+                if (!field[i][j].isMine && field[i][j].isOpen)
                     if (field[i][j].minesCounter) printf(WHITE_BLACK "%d" RESET, field[i][j].minesCounter);
                     else printf(BG_WHITE "%c" RESET, OPEN);
-                } else {
+                else
                     switch (gameState) {
                         case DEFEAT:
                             if (field[i][j].flag) printf(BG_WHITE RED "%c" RESET, FLAG);
@@ -36,9 +36,8 @@ void printField(state gameState) {
                         case WIN:
                             break;
                     }
-                }
-            } else {
-                if (!field[i][j].isMine && field[i][j].isOpen) {
+            else
+                if (!field[i][j].isMine && field[i][j].isOpen)
                     switch (field[i][j].minesCounter) {
                         case 0:
                             printf(BG_GRAY "%c" RESET, OPEN);
@@ -61,7 +60,7 @@ void printField(state gameState) {
                         default:
                             printf(GRAY_BLACK "%d" RESET, field[i][j].minesCounter);
                     }
-                } else {
+                else
                     switch (gameState) {
                         case DEFEAT:
                             if (field[i][j].flag) printf(RED "%c" RESET, FLAG);
@@ -77,9 +76,6 @@ void printField(state gameState) {
                             else printf("%c", EMPTY);
                             break;
                     }
-                }
-            }
-        }
         puts("║");
     }
     printf(" ╚");
@@ -100,32 +96,23 @@ int readKey(void) {
             case 0xE0:
                 switch (_getch()) {
                     case LEFT:
-                        if (cursor.x - 1 >= 0) {
+                        if (cursor.x - 1 >= 0)
                             cursor.x--;
-                            printField(DEFAULT);
-                        }
                         break;
                     case RIGHT:
-                        if (cursor.x + 1 < width) {
+                        if (cursor.x + 1 < width)
                             cursor.x++;
-                            printField(DEFAULT);
-                        }
                         break;
                     case UP:
-                        if (cursor.y - 1 >= 0) {
+                        if (cursor.y - 1 >= 0)
                             cursor.y--;
-                            printField(DEFAULT);
-                        }
                         break;
                     case DOWN:
-                        if (cursor.y + 1 < height) {
+                        if (cursor.y + 1 < height)
                             cursor.y++;
-                            printField(DEFAULT);
-                        }
                         break;
                 }
-            default:
-                break;
+                printField(DEFAULT);
         }
     }
 }

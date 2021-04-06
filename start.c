@@ -23,17 +23,20 @@ void startGame(void) {
         case ONE:
             height = 9, width = 9, numberOfMines = 10;
             field = (cell **) malloc(height * sizeof(cell *));
-            for (int i = 0; i < height; i++) *(field + i) = (cell *) malloc(width * sizeof(cell));
+            for (int i = 0; i < height; ++i)
+                *(field + i) = (cell *) malloc(width * sizeof(cell));
             break;
         case TWO:
             height = 16, width = 16, numberOfMines = 40;
             field = (cell **) malloc(height * sizeof(cell *));
-            for (int i = 0; i < height; i++) *(field + i) = (cell *) malloc(width * sizeof(cell));
+            for (int i = 0; i < height; ++i)
+                *(field + i) = (cell *) malloc(width * sizeof(cell));
             break;
         case THREE:
             height = 16, width = 30, numberOfMines = 99;
             field = (cell **) malloc(height * sizeof(cell *));
-            for (int i = 0; i < height; i++) *(field + i) = (cell *) malloc(width * sizeof(cell));
+            for (int i = 0; i < height; ++i)
+                *(field + i) = (cell *) malloc(width * sizeof(cell));
             break;
         default:
             break;

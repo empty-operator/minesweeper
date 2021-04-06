@@ -21,7 +21,7 @@ void initField(void) {
     for (int i = 0; i < numberOfMines; ++i) {
         int x = rand() % height, y = rand() % width;
         if (!field[x][y].isMine) field[x][y].isMine = true;
-        else i--;
+        else --i;
     }
     for (int i = 0; i < height; ++i)
         for (int j = 0; j < width; ++j)
