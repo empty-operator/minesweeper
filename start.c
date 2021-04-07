@@ -8,6 +8,7 @@
 extern int height, width;
 extern int numberOfMines;
 extern int cellsLeft;
+extern int minesLeft;
 extern state gameState;
 extern cell **field;
 
@@ -16,28 +17,34 @@ void startGame(void) {
     printf("Виберіть рівень складності:\n"
            "\t1 - Початківець (10 мін, сітка 9 х 9)\n"
            "\t2 - Аматор (40 мін, сітка 16 х 16)\n"
-           "\t3 - Експерт (99 мін, сітка 16 х 30)\n");
+           "\t3 - Експерт (99 мін, сітка 16 х 30)\n"
+           "\tTAB - переглянути статистику");
     switch (_getch()) {
         case ESCAPE:
             exit(0);
         case ONE:
-            height = 9, width = 9, numberOfMines = 10;
+            height = 9, width = 9, minesLeft = numberOfMines = 10;
             field = (cell **) malloc(height * sizeof(cell *));
             for (int i = 0; i < height; ++i)
                 *(field + i) = (cell *) malloc(width * sizeof(cell));
             break;
         case TWO:
-            height = 16, width = 16, numberOfMines = 40;
+            height = 16, width = 16, minesLeft = numberOfMines = 40;
             field = (cell **) malloc(height * sizeof(cell *));
             for (int i = 0; i < height; ++i)
                 *(field + i) = (cell *) malloc(width * sizeof(cell));
             break;
         case THREE:
-            height = 16, width = 30, numberOfMines = 99;
+            height = 16, width = 30, minesLeft = numberOfMines = 99;
             field = (cell **) malloc(height * sizeof(cell *));
             for (int i = 0; i < height; ++i)
                 *(field + i) = (cell *) malloc(width * sizeof(cell));
             break;
+        case TAB:
+            printStats();
+            printf("\nНатисніть будь-яку клавішу, щоб вийти...");
+            _getch();
+            exit(0);
         default:
             break;
     }

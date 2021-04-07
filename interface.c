@@ -7,6 +7,7 @@
 extern int height, width;
 extern int numberOfMines;
 extern int cellsLeft;
+extern int minesLeft;
 extern point cursor;
 extern cell **field;
 
@@ -81,6 +82,8 @@ void printField(state gameState) {
     printf(" ╚");
     for (int i = 0; i < width; ++i) printf("═");
     printf("╝\n");
+    if (gameState == DEFAULT)
+        printf_s("Мін залишилось: %d\n", minesLeft);
 }
 
 int readKey(void) {

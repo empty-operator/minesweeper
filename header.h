@@ -27,11 +27,18 @@ typedef enum {
     ESCAPE = 0x1B,
     SLASH = 0x5C,
     ENTER = 0xD,
+    TAB = 0X9,
     RIGHT = 0x4D,
     DOWN = 0x50,
     LEFT = 0x4B,
     UP = 0x48
 } key;
+
+typedef enum {
+    BEGINNER,
+    INTERMEDIATE,
+    EXPERT
+} difficulty;
 
 typedef enum {
     DEFAULT,
@@ -56,10 +63,23 @@ typedef struct {
     int minesCounter;
 } cell;
 
+typedef struct {
+    int day;
+    int month;
+    int year;
+} date;
+
+typedef struct {
+    clock_t time;
+    date date;
+} record;
+
 void startGame(void);
 void initField(void);
 void printField(state);
 action readKey(void);
 void openEmpty(int, int);
+void updateStats(clock_t);
+void printStats(void);
 
 #endif //MINESWEEPER_HEADER_H
