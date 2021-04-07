@@ -10,6 +10,7 @@ extern int numberOfMines;
 extern int cellsLeft;
 extern int minesLeft;
 extern state gameState;
+difficulty gameDifficulty;
 extern cell **field;
 
 void startGame(void) {
@@ -23,18 +24,21 @@ void startGame(void) {
         case ESCAPE:
             exit(0);
         case ONE:
+            gameDifficulty = BEGINNER;
             height = 9, width = 9, minesLeft = numberOfMines = 10;
             field = (cell **) malloc(height * sizeof(cell *));
             for (int i = 0; i < height; ++i)
                 *(field + i) = (cell *) malloc(width * sizeof(cell));
             break;
         case TWO:
+            gameDifficulty = INTERMEDIATE;
             height = 16, width = 16, minesLeft = numberOfMines = 40;
             field = (cell **) malloc(height * sizeof(cell *));
             for (int i = 0; i < height; ++i)
                 *(field + i) = (cell *) malloc(width * sizeof(cell));
             break;
         case THREE:
+            gameDifficulty = EXPERT;
             height = 16, width = 30, minesLeft = numberOfMines = 99;
             field = (cell **) malloc(height * sizeof(cell *));
             for (int i = 0; i < height; ++i)

@@ -50,7 +50,6 @@ int main() {
         printf("Шкода, але ви програли. Успіхів наступного разу!\n");
     for (int i = 0; i < height; i++) free(*(field + i));
     free(field);
-    printf("\nНатисніть будь-яку клавішу, щоб вийти...");
-    _getch();
+    getchar(); getchar();
     return 0;
 }

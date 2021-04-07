@@ -62,7 +62,7 @@ void updateStats(clock_t result) {
 }
 
 void printStats(void) {
-    FILE *f = fopen("D:\\files\\minesweeper\\stats.dat", "rb");
+    FILE *f = fopen("stats.dat", "rb");
     system("cls");
     if (f == NULL) {
         printf("Файл не знайдено!\n");
