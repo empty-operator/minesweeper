@@ -1,18 +1,18 @@
 #include <time.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include "header.h"
 
 extern difficulty gameDifficulty;
 
 void updateStats(clock_t result) {
-    printf_s("Ваш час: %d\n", result);
     time_t t = time(NULL);
     struct tm tm;
     localtime_s(&tm, &t);
     record new = {result, {tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900}};
     FILE *f = fopen("stats.dat", "r");
-    FILE *fnew = fopen("stats.tmp", "w+b");
+    FILE *ftemp = fopen("stats.tmp", "w+b");
     if (f == NULL) {
         f = fopen("stats.dat", "w+b");
         record empty = {-1, {0, 0, 0}};
@@ -22,21 +22,20 @@ void updateStats(clock_t result) {
     }
     record all[15];
     fread(all, sizeof(record), 15, f);
-    fwrite(all, sizeof(record), 15, fnew);
-    rewind(f);
-    rewind(fnew);
+    fwrite(all, sizeof(record), 15, ftemp);
+    rewind(f); rewind(ftemp);
     switch (gameDifficulty) {
         case BEGINNER:
             fseek(f, 0, SEEK_SET);
-            fseek(fnew, 0, SEEK_SET);
+            fseek(ftemp, 0, SEEK_SET);
             break;
         case INTERMEDIATE:
             fseek(f, 5 * sizeof(record), SEEK_SET);
-            fseek(fnew, 5 * sizeof(record), SEEK_SET);
+            fseek(ftemp, 5 * sizeof(record), SEEK_SET);
             break;
         case EXPERT:
             fseek(f, 10 * sizeof(record), SEEK_SET);
-            fseek(fnew, 10 * sizeof(record), SEEK_SET);
+            fseek(ftemp, 10 * sizeof(record), SEEK_SET);
             break;
     }
     record buf;
@@ -45,15 +44,15 @@ void updateStats(clock_t result) {
     for (int i = 0; i < 5; ++i) {
         if (!isInserted)
             if (buf.time < new.time && buf.time != -1) {
-                fwrite(&buf, sizeof(record), 1, fnew);
+                fwrite(&buf, sizeof(record), 1, ftemp);
                 fread(&buf, sizeof(record), 1, f);
             }
             else {
-                fwrite(&new, sizeof(record), 1, fnew);
+                fwrite(&new, sizeof(record), 1, ftemp);
                 isInserted = true;
             }
         else {
-            fwrite(&buf, sizeof(record), 1, fnew);
+            fwrite(&buf, sizeof(record), 1, ftemp);
             fread(&buf, sizeof(record), 1, f);
         }
     }
@@ -64,6 +63,11 @@ void updateStats(clock_t result) {
 
 void printStats(void) {
     FILE *f = fopen("D:\\files\\minesweeper\\stats.dat", "rb");
+    system("cls");
+    if (f == NULL) {
+        printf("Файл не знайдено!\n");
+        return;
+    }
     record buf;
     printf_s("╔══════════════════╦══════════════════╦══════════════════╗\n");
     printf_s("║ %-27s ║ %-22s ║ %-23s ║\n", "Початківець", "Аматор", "Експерт");

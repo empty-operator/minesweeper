@@ -1,4 +1,5 @@
 #include <time.h>
+#include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -49,6 +50,7 @@ int main() {
         printf("Шкода, але ви програли. Успіхів наступного разу!\n");
     for (int i = 0; i < height; i++) free(*(field + i));
     free(field);
-    getchar(); getchar();
+    printf("\nНатисніть будь-яку клавішу, щоб вийти...");
+    _getch();
     return 0;
 }

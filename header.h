@@ -14,6 +14,23 @@
 #define RESET "\x1b[0m"
 
 typedef enum {
+    BEGINNER,
+    INTERMEDIATE,
+    EXPERT
+} difficulty;
+
+typedef enum {
+    DEFAULT,
+    DEFEAT,
+    WIN
+} state;
+
+typedef enum {
+    OPEN_CELL,
+    SET_FLAG
+} action;
+
+typedef enum {
     EMPTY = ' ',
     OPEN = ' ',
     FLAG = 'F',
@@ -33,23 +50,6 @@ typedef enum {
     LEFT = 0x4B,
     UP = 0x48
 } key;
-
-typedef enum {
-    BEGINNER,
-    INTERMEDIATE,
-    EXPERT
-} difficulty;
-
-typedef enum {
-    DEFAULT,
-    DEFEAT,
-    WIN
-} state;
-
-typedef enum {
-    OPEN_CELL,
-    SET_FLAG
-} action;
 
 typedef struct {
     int x;
