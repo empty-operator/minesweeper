@@ -80,7 +80,7 @@ void printStats(void) {
                 printf_s("     ║            ║", buf.time, buf.date.day, buf.date.month, buf.date.year);
             else
                 printf_s(" %3d ║ %2d.%2d.%d ║", buf.time, buf.date.day, buf.date.month, buf.date.year);
-            fseek(f, 5 * sizeof(record), SEEK_CUR);
+            fseek(f, 4 * sizeof(record), SEEK_CUR);
         }
         printf_s("\n");
     }
