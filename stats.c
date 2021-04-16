@@ -11,7 +11,7 @@ void updateStats(clock_t result) {
     struct tm tm;
     localtime_s(&tm, &t);
     record new = {result, {tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900}};
-    FILE *f = fopen("stats.dat", "r");
+    FILE *f = fopen("stats.dat", "rb");
     FILE *ftemp = fopen("stats.tmp", "w+b");
     if (f == NULL) {
         f = fopen("stats.dat", "w+b");

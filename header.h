@@ -1,6 +1,7 @@
 #ifndef MINESWEEPER_HEADER_H
 #define MINESWEEPER_HEADER_H
 
+#include <time.h>
 #define BG_WHITE "\x1b[97;107m"
 #define BG_GRAY "\x1b[37;47m"
 #define BG_RED "\x1b[97;41m"
